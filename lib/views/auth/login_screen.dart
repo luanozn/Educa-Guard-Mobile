@@ -1,9 +1,12 @@
 
-import 'package:flutter/cupertino.dart';
+import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +17,7 @@ class LoginScreen extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             child: Image.asset(
-              'assets/images/background_login.jpeg', // Substitua pelo caminho da sua imagem
-              fit: BoxFit.cover,
+              'assets/images/background_login.jpeg',
             ),
           ),
           Column(
@@ -32,6 +34,7 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: _emailController,
                         decoration: const InputDecoration(
                           labelText: 'Insira seu Email',
                           border: OutlineInputBorder(
@@ -47,6 +50,7 @@ class LoginScreen extends StatelessWidget {
                         height: 15,
                       ),
                       TextFormField(
+                        controller: _passwordController,
                         decoration: const InputDecoration(
                             labelText: 'Insira sua Senha',
                             border: OutlineInputBorder(
@@ -57,22 +61,28 @@ class LoginScreen extends StatelessWidget {
                             fillColor: Colors.white,
                             filled: true),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(10),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Cadastrar',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Cadastrar',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline),
+                              ),
                             ),
-                            Text(
-                              "Esqueceu a senha?",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Esqueceu a senha?",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline),
+                              ),
                             )
                           ],
                         ),
@@ -80,13 +90,22 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         width: double.maxFinite,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            try{
+                              await AuthController.loginUser(_emailController.text, _passwordController.text);
+                            } catch(e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Erro ao logar 2")),
+                              );
+                            }
+                          },
                           child: const Text(
                             "Login",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20
+                            ),
                           ),
                         ),
                       ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
-  final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
@@ -33,9 +33,9 @@ Widget build(BuildContext context) {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _emailController,
+                      controller: _usernameController,
                       decoration: const InputDecoration(
-                        labelText: 'Insira seu Email',
+                        labelText: 'Insira seu Usuário',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
@@ -93,7 +93,7 @@ Widget build(BuildContext context) {
                       child: ElevatedButton(
                         onPressed: () async {
                           try {
-                            await AuthController.loginUser(_emailController.text, _passwordController.text);
+                            await AuthController.loginUser(_usernameController.text, _passwordController.text);
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Erro ao logar 2")),

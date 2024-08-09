@@ -6,16 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {
-  static Future<LoginOutput?> loginUser(String email, String password) async {
-    final url = Uri.parse('http://10.0.2.2:8080/login/enter');
+  static Future<LoginOutput?> loginUser(String username, String password) async {
+    final url = Uri.parse('https://educaguard.up.railway.app/api/login/enter');
+
+    final user = UserApp(username: username, password: password);
 
     final response = await http.post(
       url,
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        "Authorization": "Bearer eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiZ3VpbGhlcm1lLmR1YXJ0ZSIsICJpc3MiOiAiRUVDSF9HVUFSREBJRkdPSUFOTy5FRFVELkJSIiwgImV4cCI6IDE2ODg3NTI0NDAsICJpZFVzZXIiOiAiMSIsICJwZXJtaXNzaW9uIjogIlJPTEVfQURETUluIn0.WY6RzFGfDsCF9HRR7B0OeJf7zq7DHLixN4FUSv7A3VIeyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiZ3VpbGhlcm1lLmR1YXJ0ZSIsICJpc3MiOiAiRUVDSF9HVUFSREBJRkdPSUFOTy5FRFVELkJSIiwgImV4cCI6IDE2ODg3NTI0NDAsICJpZFVzZXIiOiAiMSIsICJwZXJtaXNzaW9uIjogIlJPTEVfQURETUluIn0.WY6RzFGfDsCF9HRR7B0OeJf7zq7DHLixN4FUSv7A3VI"
+        'Content-Type': 'application/json; charset=UTF-8'
       },
-      body: jsonEncode( UserApp(email: email, password: password)),
+      body: jsonEncode(user.toJson()), 
     );
 
     print('Status Code: ${response.statusCode}');
@@ -24,9 +25,10 @@ class AuthController {
     if (response.statusCode == 202) {
       var data = json.decode(response.body);
       print("Login realizado com sucesso!");
-      return LoginOutput.fromJson(jsonDecode(response.body));
+      return LoginOutput.fromJson(data);
     } else {
       throw Exception('Falha ao fazer login: ${response.body}');
     }
-  }
+}
+
 }

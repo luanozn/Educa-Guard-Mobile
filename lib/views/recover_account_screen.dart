@@ -1,3 +1,4 @@
+import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class RecoverAccountScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class RecoverAccountScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body:  Center(
+      body: Center(
         child: Padding(
           padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.08),
           child: Column(
@@ -23,21 +24,23 @@ class RecoverAccountScreen extends StatelessWidget {
               const Text(
                 'Recuperação de Senha',
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 23
-                ),
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 23),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               const Text(
                 'Digite seu email para recuperar sua senha',
                 style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
-                ),
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
               ),
-              const SizedBox(height: 9,),
+              const SizedBox(
+                height: 9,
+              ),
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -51,21 +54,31 @@ class RecoverAccountScreen extends StatelessWidget {
                   filled: true,
                 ),
               ),
-              const SizedBox(height: 35,),
+              const SizedBox(
+                height: 35,
+              ),
               SizedBox(
                 width: double.maxFinite,
                 child: ElevatedButton(
-                  onPressed: () {}, 
-                  style: ButtonStyle(
-                    elevation: WidgetStateProperty.all(8.0)
-                  ),
+                  onPressed: () async {
+                    final email = _emailController.text;
+                    try {
+                      await AuthController.recoveryPassword(email);
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Email de recuperação enviado")));
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text("Erro ao enviar email: ${e.toString()}")));
+                    }
+                  },
+                  style: ButtonStyle(elevation: WidgetStateProperty.all(8.0)),
                   child: const Text(
                     "Registrar",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20
-                    ),
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ),
                 ),
               ),

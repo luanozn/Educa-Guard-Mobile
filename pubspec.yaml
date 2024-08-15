@@ -68,6 +68,7 @@ flutter:
     - assets/images/google.png
     - assets/images/background_login.jpeg
     - assets/images/foco-da-camera.png
+    - assets/images/Logo_SimplesBranca.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

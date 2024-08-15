@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.2.2  
+  face_camera: ^0.1.2
+  camera: ^0.11.0+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,6 +67,7 @@ flutter:
     - assets/images/Logo_SimplesPreta.png
     - assets/images/google.png
     - assets/images/background_login.jpeg
+    - assets/images/foco-da-camera.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

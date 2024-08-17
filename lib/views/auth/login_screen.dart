@@ -1,3 +1,4 @@
+import 'package:educa_guardia/views/widgets//CircleBackground.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/recover_account_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,15 @@ class LoginScreen extends StatelessWidget {
     bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
+
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/background_login.jpeg',
-              fit: BoxFit.cover,
+            child: CircleBackground(
+              numberOfCircles: 2,
+              colors: [
+                Colors.blue,
+              ],
             ),
           ),
           Column(
@@ -28,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Image.asset(
                 "assets/images/Logo_SimplesBranca.png",
-                width: 110,
+                width: 160,
               ),
               Padding(
                 padding:
@@ -36,33 +40,61 @@ class LoginScreen extends StatelessWidget {
                 child: Form(
                   child: Column(
                     children: [
-                      TextFormField(
-                        controller: _usernameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Insira seu Usuário',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 5), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: TextFormField(
+                          controller: _usernameController,
+                          decoration: const InputDecoration(
+                            labelText: 'Insira seu Usuário',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                            ),
+                            prefixIcon: Icon(Icons.person_2_rounded),
+                            prefixIconColor: Colors.black,
+                            fillColor: Colors.white,
+                            filled: true,
                           ),
-                          prefixIcon: Icon(Icons.person_2_rounded),
-                          prefixIconColor: Colors.black,
-                          fillColor: Colors.white,
-                          filled: true,
                         ),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      TextFormField(
-                        controller: _passwordController,
-                        decoration: const InputDecoration(
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 5), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: TextFormField(
+                          controller: _passwordController,
+                          obscureText: true, // Para esconder a senha
+                          decoration: const InputDecoration(
                             labelText: 'Insira sua Senha',
                             border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                            ),
                             prefixIcon: Icon(Icons.lock),
                             prefixIconColor: Colors.black,
                             fillColor: Colors.white,
-                            filled: true),
+                            filled: true,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10),
@@ -114,7 +146,11 @@ class LoginScreen extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(9))),
+                                    borderRadius: BorderRadius.circular(9),
+                                ),
+                                elevation: 10, // Adiciona a sombra
+                                shadowColor: Colors.black.withOpacity(1), // Define a cor da sombra
+                                ),
                             child: const Text(
                               "Login",
                               style: TextStyle(
@@ -178,12 +214,13 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(7, 98, 217, 1.0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
                         child: const Text(
                           "Login",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
                         ),
@@ -200,7 +237,10 @@ class LoginScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(9))),
                         child: const Text(
                           "Sou Aluno",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
                         ),
                       ),
                     ),

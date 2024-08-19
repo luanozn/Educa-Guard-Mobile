@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:educa_guardia/models/login_output.dart';
 import 'package:educa_guardia/models/user_app.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {

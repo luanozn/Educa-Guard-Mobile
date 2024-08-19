@@ -4,6 +4,8 @@ import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 
 class RecognitionScreen extends StatefulWidget {
+  const RecognitionScreen({super.key});
+
   @override
   State<RecognitionScreen> createState() => _RecognitionScreenState();
 }
@@ -16,16 +18,23 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
     controller = FaceCameraController(
       autoCapture: true,
       defaultCameraLens: CameraLens.front,
-      onCapture: (File? image) {
-        
-      },
+      onCapture: (File? image) {},
     );
-  super.initState();
-}
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Reconhecimento Facial'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -41,7 +50,9 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                   'Digitalizando seu rosto',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Text(
                   'por favor mantenha seu\n rosto no centro da tela',
                   style: TextStyle(
@@ -65,10 +76,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                 ),
                 child: const Text(
                   'Iniciar',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 19
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 19),
                 ),
               ),
             ),

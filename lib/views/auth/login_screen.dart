@@ -1,3 +1,4 @@
+import 'package:educa_guardia/views/recognition_screen.dart';
 import 'package:educa_guardia/views/widgets//CircleBackground.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/recover_account_screen.dart';
@@ -16,10 +17,9 @@ class LoginScreen extends StatelessWidget {
     bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
-
       body: Stack(
         children: [
-          Positioned.fill(
+          const Positioned.fill(
             child: CircleBackground(
               numberOfCircles: 2,
               colors: [
@@ -48,7 +48,8 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 5), // changes position of shadow
+                              offset:
+                                  const Offset(0, 5), // changes position of shadow
                             ),
                           ],
                         ),
@@ -57,7 +58,8 @@ class LoginScreen extends StatelessWidget {
                           decoration: const InputDecoration(
                             labelText: 'Insira seu Usuário',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
                             ),
                             prefixIcon: Icon(Icons.person_2_rounded),
                             prefixIconColor: Colors.black,
@@ -77,7 +79,8 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 5), // changes position of shadow
+                              offset:
+                                  const Offset(0, 5), // changes position of shadow
                             ),
                           ],
                         ),
@@ -87,7 +90,8 @@ class LoginScreen extends StatelessWidget {
                           decoration: const InputDecoration(
                             labelText: 'Insira sua Senha',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
                             ),
                             prefixIcon: Icon(Icons.lock),
                             prefixIconColor: Colors.black,
@@ -145,12 +149,13 @@ class LoginScreen extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(9),
-                                ),
-                                elevation: 10, // Adiciona a sombra
-                                shadowColor: Colors.black.withOpacity(1), // Define a cor da sombra
-                                ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              elevation: 10, // Adiciona a sombra
+                              shadowColor: Colors.black
+                                  .withOpacity(1), // Define a cor da sombra
+                            ),
                             child: const Text(
                               "Login",
                               style: TextStyle(
@@ -177,7 +182,12 @@ class LoginScreen extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RecognitionScreen()));
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(7, 98, 217, 1.0),
                         shape: RoundedRectangleBorder(
@@ -214,7 +224,8 @@ class LoginScreen extends StatelessWidget {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(7, 98, 217, 1.0),
+                            backgroundColor:
+                                const Color.fromRGBO(7, 98, 217, 1.0),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9))),
                         child: const Text(
@@ -229,7 +240,12 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(width: 10),
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RecognitionScreen()));
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 const Color.fromRGBO(7, 98, 217, 1.0),

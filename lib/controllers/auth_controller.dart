@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:educa_guardia/models/login_output.dart';
 import 'package:educa_guardia/models/user_app.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
 
 class AuthController {
   static Future<void> recoveryPassword(String email) async {
@@ -44,6 +47,21 @@ class AuthController {
       return LoginOutput.fromJson(data);
     } else {
       throw Exception('Falha ao fazer login: ${response.body}');
+    }
+  }
+
+  Future<void> uploadImage(File image) async {
+    final url = Uri.parse('.......');
+
+    var request = http.MultipartRequest('POST', url);
+    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      print('Upload realizado com sucesso');
+    } else {
+      print('Falha no upload: ${response.statusCode}');
     }
   }
 }

@@ -50,7 +50,7 @@ class AuthController {
     }
   }
 
-  Future<void> uploadImage(File image) async {
+  Future<void> uploadImage(String username, File image) async {
     final url = Uri.parse('.......');
 
     var request = http.MultipartRequest('POST', url);

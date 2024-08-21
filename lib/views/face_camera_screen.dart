@@ -13,13 +13,13 @@ class _FaceCameraScreenState extends State<FaceCameraScreen> {
   File? _capturedImage;
   late FaceCameraController controller;
 
-  @override
+  @override 
   void initState() {
     controller = FaceCameraController(
       autoCapture: true,
       defaultCameraLens: CameraLens.front,
       onCapture: (File? image) {
-        Navigator.pop(context, image); // Retorna a imagem capturada
+        Navigator.pop(context, image); 
       },
     );
     super.initState();

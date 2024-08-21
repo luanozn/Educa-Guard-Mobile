@@ -13,6 +13,7 @@ class RecognitionScreen extends StatefulWidget {
 class _RecognitionScreenState extends State<RecognitionScreen> {
   bool isCapturing = false;
   File? capturedImage;
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +63,22 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: TextField(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Nome de usuário',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     width: 300,
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () async {
+                        final username = _usernameController.text.trim();
                         final result = await Navigator.push<File?>(
                           context,
                           MaterialPageRoute(
@@ -80,7 +92,7 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                           });
 
                           // Chama o método de upload no AuthController
-                          await AuthController().uploadImage(result);
+                          await AuthController().uploadImage(username, result);
                         }
                       },
                       style: ButtonStyle(

@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:educa_guardia/models/login_output.dart';
 import 'package:educa_guardia/models/user_app.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
 
 class AuthController {
   static Future<void> recoveryPassword(String email) async {
@@ -50,18 +48,19 @@ class AuthController {
     }
   }
 
-  Future<void> uploadImage(String username, File image) async {
-    final url = Uri.parse('.......');
+  Future<void> recFacial(String username, File image) async {
+    final url = Uri.parse(
+        'https://educaguard.up.railway.app/api/login/$username/recfacial');
 
     var request = http.MultipartRequest('POST', url);
-    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+    request.files.add(await http.MultipartFile.fromPath('file', image.path));
 
     var response = await request.send();
 
-    if (response.statusCode == 200) {
-      print('Upload realizado com sucesso');
+    if (response.statusCode == 202) {
+      print('Reconhecimento realizado com sucesso!');
     } else {
-      print('Falha no upload: ${response.statusCode}');
+      print('Falha no Reconhecimento: ${response.statusCode} ');
     }
   }
 }

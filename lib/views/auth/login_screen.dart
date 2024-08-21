@@ -48,8 +48,8 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset:
-                                  const Offset(0, 5), // changes position of shadow
+                              offset: const Offset(
+                                  0, 5), // changes position of shadow
                             ),
                           ],
                         ),
@@ -79,8 +79,8 @@ class LoginScreen extends StatelessWidget {
                               color: Colors.black.withOpacity(0.3),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset:
-                                  const Offset(0, 5), // changes position of shadow
+                              offset: const Offset(
+                                  0, 5), // changes position of shadow
                             ),
                           ],
                         ),
@@ -244,7 +244,8 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const RecognitionScreen()));
+                                  builder: (context) =>
+                                      const RecognitionScreen()));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor:

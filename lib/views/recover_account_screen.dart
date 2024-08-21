@@ -64,7 +64,7 @@ class _RecoverAccountScreenState extends State<RecoverAccountScreen> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(7, 98, 217, 1.0),
         title: Image.asset(
-          'assets/images/Logo_SimplesPreta.png',
+          'assets/images/Logo_SimplesBranca.png',
           width: 115,
         ),
         centerTitle: true,

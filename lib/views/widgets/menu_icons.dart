@@ -7,13 +7,23 @@ class HomeIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.home_filled,
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.home_filled,
+              size: 50,
+            ),
           ),
         ),
-        const Text('Início')
+        const Text(
+          'Início',
+          style: TextStyle(
+            fontWeight: FontWeight.bold
+          ),
+        )
       ],
     );
   }
@@ -37,7 +47,6 @@ class ReportIcon extends StatelessWidget {
     );
   }
 }
-
 
 class MessagesIcon extends StatelessWidget {
   const MessagesIcon({super.key});
@@ -114,4 +123,3 @@ class PresenceListIcon extends StatelessWidget {
     );
   }
 }
-

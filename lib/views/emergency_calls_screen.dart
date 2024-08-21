@@ -37,7 +37,7 @@ class EmergencyCallsScreen extends StatelessWidget {
                               size: 40,
                             ),
                             SizedBox(width: 25,),
-                            Text('193',style: TextStyle(fontSize: 20),)
+                            Text('193',style: TextStyle(fontSize: 30),)
                           ],
                         ),
                         Icon(Icons.arrow_forward_ios_outlined)
@@ -72,7 +72,7 @@ class EmergencyCallsScreen extends StatelessWidget {
                               size: 40,
                             ),
                             SizedBox(width: 25,),
-                            Text('192',style: TextStyle(fontSize: 20),)
+                            Text('192',style: TextStyle(fontSize: 30),)
                           ],
                         ),
                         Icon(Icons.arrow_forward_ios_outlined)

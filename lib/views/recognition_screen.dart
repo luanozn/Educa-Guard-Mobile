@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:educa_guardia/controllers/auth_controller.dart';
+import 'package:educa_guardia/views/chat.dart';
 import 'package:educa_guardia/views/face_camera_screen.dart';
+import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class RecognitionScreen extends StatefulWidget {
@@ -94,7 +96,14 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                           });
 
                           // Chama o método de upload no AuthController
-                          await AuthController().recFacial(username, result);
+                          var isRecognized = await AuthController()
+                              .recFacial(username, result);
+                          if (isRecognized) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Chat()),
+                            );
+                          }
                         }
                       },
                       style: ButtonStyle(

@@ -48,7 +48,7 @@ class AuthController {
     }
   }
 
-  Future<void> recFacial(String username, File image) async {
+  Future<bool> recFacial(String username, File image) async {
     final url = Uri.parse(
         'https://educaguard.up.railway.app/api/login/$username/recfacial');
 
@@ -59,8 +59,10 @@ class AuthController {
 
     if (response.statusCode == 202) {
       print('Reconhecimento realizado com sucesso!');
+      return true;
     } else {
       print('Falha no Reconhecimento: ${response.statusCode} ');
+      return false;
     }
   }
 }

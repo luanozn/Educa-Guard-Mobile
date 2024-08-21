@@ -1,3 +1,4 @@
+import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:educa_guardia/views/recognition_screen.dart';
 import 'package:educa_guardia/views/widgets//CircleBackground.dart';
 import 'package:educa_guardia/controllers/auth_controller.dart';
@@ -138,13 +139,29 @@ class LoginScreen extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () async {
                               try {
-                                await AuthController.loginUser(
-                                    _usernameController.text,
-                                    _passwordController.text);
+                                var output = await AuthController.loginUser(
+                                  _usernameController.text,
+                                  _passwordController.text,
+                                );
+
+                                print("Output: $output");
+
+                            
+                                if (output != null) {
+                                  print(output.role.toString());
+                            
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => MenuScreen(user: output)),
+                                  );
+                                } else {
+                                  throw Exception("Login falhou");
+                                }
                               } catch (e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text("Erro ao logar!")),
+                                    content: Text("Erro ao logar!"),
+                                  ),
                                 );
                               }
                             },
@@ -152,9 +169,9 @@ class LoginScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(9),
                               ),
-                              elevation: 10, // Adiciona a sombra
+                              elevation: 10, 
                               shadowColor: Colors.black
-                                  .withOpacity(1), // Define a cor da sombra
+                                  .withOpacity(1),
                             ),
                             child: const Text(
                               "Login",

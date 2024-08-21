@@ -123,7 +123,7 @@ class _RecoverAccountScreenState extends State<RecoverAccountScreen> {
                       elevation: 8.0,
                     ),
                     child: const Text(
-                      "Registrar",
+                      "Recuperar",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

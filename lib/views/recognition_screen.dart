@@ -85,14 +85,16 @@ class _RecognitionScreenState extends State<RecognitionScreen> {
                               builder: (context) => const FaceCameraScreen()),
                         );
 
+                        //print('Chegou antes do if: $result');
                         if (result != null) {
+                          //print('Print depois do if: $result');
                           setState(() {
                             capturedImage = result;
                             isCapturing = false;
                           });
 
                           // Chama o método de upload no AuthController
-                          await AuthController().uploadImage(username, result);
+                          await AuthController().recFacial(username, result);
                         }
                       },
                       style: ButtonStyle(

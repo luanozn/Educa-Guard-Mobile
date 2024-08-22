@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:educa_guardia/controllers/auth_controller.dart';
 import 'package:educa_guardia/views/chat.dart';
 import 'package:educa_guardia/views/face_camera_screen.dart';
-import 'package:educa_guardia/views/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 class RecognitionScreen extends StatefulWidget {
